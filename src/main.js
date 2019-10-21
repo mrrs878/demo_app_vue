@@ -8,7 +8,7 @@ import MHeader from '@/components/MHeader'
 import MIcon from '@/components/MIcon'
 import MScroll from '@/components/MScroll'
 
-import { Swipe, SwipeItem, Toast, Lazyload } from 'vant'
+import { Swipe, SwipeItem, Toast, Lazyload, Tab, Tabs } from 'vant'
 
 import { request } from '@/api'
 import { AjaxError, before, after } from '@/utils/tool'
@@ -18,6 +18,7 @@ Vue.component('MIcon', MIcon)
 Vue.component('MScroll', MScroll)
 
 Vue.use(Swipe).use(SwipeItem)
+Vue.use(Tab).use(Tabs)
 Vue.use(Toast)
 Vue.use(Lazyload)
 
