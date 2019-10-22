@@ -1,7 +1,7 @@
 <template>
   <header class='header padding' :style="{ backgroundColor: customStyle.bgColor }">
-    <div class="left">
-      <m-icon :icon-class="leftIcon" :fill-color="customStyle.titleColor || '#fff'" @click="handleLeftClick" />
+    <div class="left" @click="handleLeftClick">
+      <m-icon :icon-class="leftIcon" :fill-color="customStyle.titleColor || '#fff'" />
       <span class="title" :style="{ color: customStyle.titleColor || '#fff' }" v-if="titlePosition">{{ title }}</span>
     </div>
 
@@ -37,11 +37,16 @@ export default {
     rightText: {
       type: String,
       default: ''
+    },
+    leftTapPath: {
+      type: String,
+      default: ''
     }
   },
   methods: {
     handleLeftClick () {
-      this.$emit('onLeftClick')
+      if (this.leftTapPath) this.$router.push(this.leftTapPath)
+      else this.$router.back()
     }
   }
 }
@@ -67,6 +72,7 @@ export default {
   .center {
     width: 40%;
     line-height: 1rem;
+    text-align: center;
   }
   .right {
     width: 30%;

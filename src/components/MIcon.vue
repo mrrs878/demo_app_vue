@@ -1,5 +1,5 @@
 <template>
-  <div class="svg-container" :style="{ color: fillColor, display: titlePosition ? 'flex' : 'block' }">
+  <div class="svg-container" :style="{ color: fillColor, display: titlePosition ? 'flex' : 'block' }" @click="$emit('click')">
     <svg class="svg-icon"  :style="{ width: `${ size }px`, height: `${ size }px` }" aria-hidden="true" :fill="fillColor">
       <use :xlink:href="iconName" />
     </svg>

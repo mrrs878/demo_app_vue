@@ -29,7 +29,15 @@ export default {
       type: Array,
       default: null
     },
+    scrollStart: {
+      type: Boolean,
+      default: false
+    },
     pullUp: {
+      type: Boolean,
+      default: false
+    },
+    touchEnd: {
       type: Boolean,
       default: false
     },
@@ -47,9 +55,7 @@ export default {
     }
   },
   mounted () {
-    setTimeout(() => {
-      this._initScroll()
-    }, 20)
+    this.$nextTick(this._initScroll)
   },
   methods: {
     _initScroll () {
@@ -59,7 +65,8 @@ export default {
       this.scroll = new BScroll(this.$refs.wrapper, {
         probeType: this.probeType,
         click: this.click,
-        scrollX: this.scrollX
+        scrollX: this.scrollX,
+        scrollY: !this.scrollX
       })
 
       this.scroll.on('scroll', (pos) => {
@@ -69,22 +76,29 @@ export default {
       if (this.pullUp) {
         this.scroll.on('scrollEnd', () => {
           if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
-            this.$emit('scrollToEnd')
+            this.$emit('pullUp')
           }
         })
       }
 
-      if (this.pullDown) {
+      if (this.touchEnd) {
         this.scroll.on('touchEnd', (pos) => {
           if (pos.y > 50) {
-            this.$emit('pullDown')
+            this.pullDown && this.$emit('pullDown')
           }
+          this.$emit('touchEnd', pos)
         })
       }
 
       if (this.beforeScroll) {
         this.scroll.on('beforeScrollStart', () => {
           this.$emit('beforeScroll')
+        })
+      }
+
+      if (this.scrollStart) {
+        this.scroll.on('scrollStart', () => {
+          this.$emit('scrollStart')
         })
       }
     },

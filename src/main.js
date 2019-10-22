@@ -19,10 +19,10 @@ Vue.component('MScroll', MScroll)
 
 Vue.use(Swipe).use(SwipeItem)
 Vue.use(Tab).use(Tabs)
-Vue.use(Toast)
 Vue.use(Lazyload)
 
 Vue.prototype.request = request
+Vue.prototype.toast = Toast
 
 Window.AjaxError = AjaxError
 Function.prototype.before = before

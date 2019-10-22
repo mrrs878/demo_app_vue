@@ -1,4 +1,5 @@
 const Recommend = () => import('@/views/recommend/Recommend')
+const ResourceDetail = () => import('@/views/recommend/ResourceDetail')
 
 const routes = [
   {
@@ -8,6 +9,10 @@ const routes = [
   {
     path: '/recommend',
     component: Recommend
+  },
+  {
+    path: '/resourceDetail/:id',
+    component: ResourceDetail
   }
 ]
 
